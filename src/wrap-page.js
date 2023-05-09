@@ -62,7 +62,7 @@ export default ({ element, props }, pluginOptions) => {
   let isRedirect = redirect && !routed
 
   if (isRedirect) {
-    const { search } = location
+    const { search, hash } = location
 
     // Skip build, Browsers only
     if (typeof window !== "undefined") {
@@ -86,7 +86,7 @@ export default ({ element, props }, pluginOptions) => {
 
       if (isRedirect) {
         const queryParams = search || ""
-        const newUrl = `/${detected}${originalPath}${queryParams}`
+        const newUrl = `/${detected}${originalPath}${queryParams}${hash}`
         window.localStorage.setItem("gatsby-intl-language", detected)
 
         navigate(newUrl, {
